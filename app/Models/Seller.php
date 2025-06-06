@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 // use Ramsey\Uuid\Uuid;
 
-class User extends Authenticatable
+class Seller extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
     // public $incrementing = false;
@@ -25,50 +25,31 @@ class User extends Authenticatable
         // });
     }
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
-        "first_name",
-        "last_name",
+        "name",
         "email",
+        "email_verified_at",
         "password",
-        "phone",
         "image",
-        // "remember_me",
-        // "is_verified",
-        "status",
-    ];
-    protected $appends = ["full_name"];
-
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        "password",
-        "remember_token",
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
     protected $casts = [
         "password" => "hashed",
     ];
+    protected $appends = ["full_name","image"];
 
     public function getFullNameAttribute()
     {
-        return "{$this->first_name} {$this->last_name}";
+        return "{$this->name}";
     }
-    
-    // public function userOrders()
+
+    // public function userStore()
     // {
-    //     return $this->hasMany(Order::class,"user_id","id");
+    //     return $this->hasOne(Store::class,"seller_id","id");
+    // }
+
+    // public function sellerOrders()
+    // {
+    //     return $this->hasMany(OrderProduct::class,"seller_id","id");
     // }
 }
