@@ -12,7 +12,7 @@ const Toast = Swal.mixin({
 });
 
 function successMessage(message, url=""){
-    customButton();
+    // customButton();
     Toast.fire({
         icon: 'success',
         title: message
@@ -22,7 +22,7 @@ function successMessage(message, url=""){
 }
 
 function successMessageWithOutUrl(message){
-    customButton();
+    // customButton();
     Toast.fire({
         icon: 'success',
         title: message

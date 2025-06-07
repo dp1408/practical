@@ -8,14 +8,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
 
-class Authenticate
+class Authenticate extends Middleware
 {
     /**
      * Handle an incoming request.
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): ?string
+    public function redirectTo(Request $request): ?string
     {
         if (!$request->expectsJson()) {
             // Check the URL segment to determine the redirect URL
@@ -26,7 +26,7 @@ class Authenticate
             } elseif ($request->is('home') || $request->is('home/*')) {
                 return route('home.login');
             } else{
-                return route('home');
+                return route('home.dashboard');
             }
         }
     }

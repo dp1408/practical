@@ -13,11 +13,11 @@ Route::controller(WebAuthController::class)->group(function(){
     Route::get("login", "login")->name("home.login");
     Route::post("post-login", "postLogin")->name("home.postLogin");
     Route::post("post-registration", "postRegistration")->name("home.postRegistration");
-    Route::post("logout", "logout")->name("home.logout");
+    Route::get("logout", "logout")->name("home.logout");
 });
 
 Route::middleware("auth")->group(function () {
-    Route::controller(UserController::class)->group(function(){
+    Route::controller(WebAuthController::class)->group(function(){
         Route::get("dashboard", "dashboard")->name("home.dashboard");
     });
 });
