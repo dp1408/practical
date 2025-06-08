@@ -1,9 +1,9 @@
-@extends('admin.layout.app')
-@section('title', 'Admin Register')
+@extends('seller.layout.app')
+@section('title', 'Seller Register')
 @section('content')
 <div class="container mt-5 card">
     <div class="d-flex justify-content-center align-items-center card-header">
-        Admin Register
+        Seller Register
     </div>
     <div class="card-body">
         <form class="row" role="form" autocomplete="off" class="text-start" id="registerForm">
@@ -51,7 +51,7 @@
     </div>
     <div class="card-footer d-flex justify-content-between mt-3">
         <button type="submit" class="btn btn-success" onclick="validateRegisterForm()">Submit</button>
-        <a class="btn btn-primary" href="{{route('admin.login')}}">Login</a>
+        <a class="btn btn-primary" href="{{route('seller.login')}}">Login</a>
     </div>
 </div>
 @endsection()
@@ -88,7 +88,7 @@
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                url: "{{ route('admin.postRegistration') }}",
+                url: "{{ route('seller.postRegistration') }}",
                 type: "post",
                 data:  {
                     name: full_name,

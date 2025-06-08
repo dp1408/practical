@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
-use App\Models\User;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
@@ -101,7 +100,6 @@ class AdminAuthController extends Controller
     public function postRegistration(Request $request){
         $request->validate([
             "name" => "required",
-            "phone" => "required|min:10|max:10",
             "email" => "required|email|unique:admins,email",
             "password" => "required|required_with:confirm_password|same:confirm_password|min:6",
             "confirm_password" => "required"
@@ -125,7 +123,6 @@ class AdminAuthController extends Controller
             $register = new Admin([
                 "name" => $data["name"],
                 "email" => $data["email"],
-                "phone" => $data["phone"],
                 "password" => $data["password"],
             ]);
             $register->save(); 
