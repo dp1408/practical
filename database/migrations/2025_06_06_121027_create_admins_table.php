@@ -21,6 +21,7 @@ return new class extends Migration
             $table->timestamp('last_login')->nullable();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('NULL ON UPDATE CURRENT_TIMESTAMP'))->nullable();
+            $table->timestamp("deleted_at")->nullable();
         });
 
         Schema::create('admin_password_reset_tokens', function (Blueprint $table) {
